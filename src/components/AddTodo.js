@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, TextInput, Button, Alert } from 'react-native';
+import { View, StyleSheet, TextInput, Alert } from 'react-native';
 import { THEME } from '../theme';
+import { AppButton } from './UI/AppButton';
 
 export const AddTodo = ({ onSubmit }) => {
   const [value, setValue] = useState('');
@@ -24,7 +25,10 @@ export const AddTodo = ({ onSubmit }) => {
         autoCorrect={false}
         autoCapitalize='none'
       />
-      <Button title='Add' style={styles.button} onPress={pressHandler} />
+
+      <AppButton onPress={pressHandler} style={styles.button}>
+        Add
+      </AppButton>
     </View>
   );
 };
