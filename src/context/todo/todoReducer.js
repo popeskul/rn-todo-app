@@ -1,3 +1,3 @@
-export const reducer = (state, action) => {
+export const todoReducer = (state, action) => {
   return state;
 };

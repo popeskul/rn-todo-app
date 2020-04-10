@@ -1,10 +1,10 @@
 import React, { useReducer } from 'react';
 import { TodoContext } from './todoContext';
-import { reducer } from './todoReducer';
+import { todoReducer } from './todoReducer';
+import { initialState } from './initialState';
 
 export const TodoState = ({ children }) => {
-  const initialState = [{ id: '1', title: 'Some text' }];
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [state, dispatch] = useReducer(todoReducer, initialState);
 
   return (
     <TodoContext.Provider
