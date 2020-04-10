@@ -3,9 +3,7 @@ import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import { AppText } from './UI/AppText';
 
 export const Todo = ({ todo, onRemove, openTodo }) => {
-  const longPressHandler = () => {
-    onRemove(todo.id);
-  };
+  const longPressHandler = () => onRemove(todo.id);
 
   return (
     <TouchableOpacity

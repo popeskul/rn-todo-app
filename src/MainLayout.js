@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-// import { Alert } from 'react-native';
 import { View, StyleSheet } from 'react-native';
 import { Navbar } from './components/Navbar';
 import { MainScreen } from './screens/MainScreen';
@@ -9,30 +8,6 @@ import { ScreenContext } from './context/screen/screenContext';
 
 export const MainLayout = () => {
   const { todoId } = useContext(ScreenContext);
-
-  // const removeTodo = (id) => {
-  //   const todo = todos.find((todo) => todo.id === id);
-
-  //   Alert.alert(
-  //     'Delete Todo',
-  //     `Are you sure you want to delete ${todo.title}?`,
-  //     [
-  //       {
-  //         text: 'Cancel',
-  //         style: 'cancel',
-  //       },
-  //       {
-  //         text: 'Delete',
-  //         style: 'destructive',
-  //         onPress: () => {
-  //           setTodoId(null);
-  //           setTodos((prev) => prev.filter((todo) => todo.id !== id));
-  //         },
-  //       },
-  //     ],
-  //     { cancelable: false }
-  //   );
-  // };
 
   return (
     <View>
