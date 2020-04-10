@@ -3,8 +3,20 @@ import { View, StyleSheet, Modal, TextInput, Alert } from 'react-native';
 import { THEME } from '../theme';
 import { AppButton } from './UI/AppButton';
 
-export const EditModal = ({ value, visible, onCancel, onSave }) => {
-  const [title, setTitle] = useState(value);
+interface IProps {
+  value: string;
+  visible: boolean;
+  onCancel: () => void;
+  onSave: (title: string) => void;
+}
+
+export const EditModal: React.FC<IProps> = ({
+  value,
+  visible,
+  onCancel,
+  onSave,
+}) => {
+  const [title, setTitle] = useState<string>(value);
 
   const saveHandle = () => {
     if (title.trim().length < 3) {

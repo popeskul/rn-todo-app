@@ -1,8 +1,15 @@
 import React from 'react';
 import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import { AppText } from './UI/AppText';
+import { ITodo } from '../interfaces';
 
-export const Todo = ({ todo, onRemove, openTodo }) => {
+interface Props {
+  todo: ITodo;
+  onRemove: (id: number) => number;
+  openTodo: (id: number) => number;
+}
+
+export const Todo: React.FC<Props> = ({ todo, onRemove, openTodo }) => {
   const longPressHandler = () => onRemove(todo.id);
 
   return (

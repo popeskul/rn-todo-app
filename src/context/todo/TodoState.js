@@ -6,6 +6,11 @@ import { initialState } from './initialState';
 import { ADD_TODO, REMOVE_TODO, UPDATE_TODO } from '../types';
 import { ScreenContext } from '../screen/screenContext';
 
+// interface Props {
+//   children: React.ReactElement<any>;
+// }
+
+// export const TodoState: React.FC<Props> = ({ children }) => {
 export const TodoState = ({ children }) => {
   const [state, dispatch] = useReducer(todoReducer, initialState);
   const { changeScreen } = useContext(ScreenContext);

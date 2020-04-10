@@ -3,14 +3,18 @@ import { View, StyleSheet, Platform } from 'react-native';
 import { AppTextBold } from './UI/AppTextBold';
 import { THEME } from '../theme';
 
-export const Navbar = ({ title }) => {
+interface Props {
+  title: string;
+}
+
+export const Navbar: React.FC<Props> = ({ title }) => {
   return (
     <View
       style={{
         ...styles.navbar,
         ...Platform.select({
-          ios: styles.navbarIos,
           android: styles.navbarAndroid,
+          ios: styles.navbarIos,
         }),
       }}
     >
@@ -27,11 +31,13 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
   },
   navbarAndroid: {
+    borderBottomWidth: 1,
+    borderBottomColor: THEME.MAIN_COLOR,
     backgroundColor: THEME.MAIN_COLOR,
   },
   navbarIos: {
-    borderBottomColor: THEME.MAIN_COLOR,
     borderBottomWidth: 1,
+    borderBottomColor: THEME.MAIN_COLOR,
   },
   text: {
     color: Platform.OS === 'ios' ? THEME.MAIN_COLOR : '#fff',
