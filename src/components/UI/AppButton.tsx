@@ -9,13 +9,25 @@ import {
 import { AppTextBold } from './AppTextBold';
 import { THEME } from '../../theme';
 
-export const AppButton = ({ children, onPress, color = THEME.MAIN_COLOR }) => {
-  const Wrapper =
+interface IProps {
+  onPress: () => void;
+  color?: string;
+  style?: object;
+  children: React.ReactNode;
+}
+
+export const AppButton: React.FC<IProps> = ({
+  children,
+  onPress,
+  style,
+  color = THEME.MAIN_COLOR,
+}) => {
+  const Wrapper: any =
     Platform.OS === 'android' ? TouchableNativeFeedback : TouchableOpacity;
 
   return (
     <Wrapper onPress={onPress} activeOpacity={0.7}>
-      <View style={{ ...styles.button, backgroundColor: color }}>
+      <View style={{ ...styles.button, backgroundColor: color, ...style }}>
         <AppTextBold style={styles.text}>{children}</AppTextBold>
       </View>
     </Wrapper>

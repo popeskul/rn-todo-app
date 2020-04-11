@@ -9,14 +9,16 @@ import { AppButton } from '../components/UI/AppButton';
 import { TodoContext } from '../context/todo/todoContext';
 import { ScreenContext } from '../context/screen/screenContext';
 
-export const TodoScreen = () => {
+interface IProps {}
+
+export const TodoScreen: React.FC<IProps> = () => {
   const { todos, updateTodo, removeTodo } = useContext(TodoContext);
   const { todoId, changeScreen } = useContext(ScreenContext);
-  const [modal, setModal] = useState(false);
+  const [modal, setModal] = useState<boolean>(false);
 
   const todo = todos.find((todo) => todo.id === todoId);
 
-  const saveHandler = (title) => {
+  const saveHandler = (title: string) => {
     updateTodo(todo.id, title);
     setModal(false);
   };

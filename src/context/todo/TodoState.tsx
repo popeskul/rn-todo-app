@@ -6,19 +6,18 @@ import { initialState } from './initialState';
 import { ADD_TODO, REMOVE_TODO, UPDATE_TODO } from '../types';
 import { ScreenContext } from '../screen/screenContext';
 
-// interface Props {
-//   children: React.ReactElement<any>;
-// }
+interface Props {
+  children: React.ReactElement<any>;
+}
 
-// export const TodoState: React.FC<Props> = ({ children }) => {
-export const TodoState = ({ children }) => {
+export const TodoState: React.FC<Props> = ({ children }) => {
   const [state, dispatch] = useReducer(todoReducer, initialState);
   const { changeScreen } = useContext(ScreenContext);
 
-  const addTodo = (title) => dispatch({ type: ADD_TODO, title });
+  const addTodo = (title: string) => dispatch({ type: ADD_TODO, title });
 
-  const removeTodo = (id) => {
-    const todo = state.todos.find((t) => t.id === id);
+  const removeTodo = (id: number) => {
+    const todo = state.todos.find((todo: { id: number }) => todo.id === id);
 
     Alert.alert(
       'Delete Todo',
@@ -41,7 +40,7 @@ export const TodoState = ({ children }) => {
     );
   };
 
-  const updateTodo = (id, title) =>
+  const updateTodo = (id: number, title: string) =>
     dispatch({ type: UPDATE_TODO, id: id, title: title });
 
   return (

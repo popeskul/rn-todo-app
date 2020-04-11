@@ -1,15 +1,17 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { StyleSheet, View, FlatList, Image, Dimensions } from 'react-native';
 import { AddTodo } from '../components/AddTodo';
-import { Todo } from '../components/Todo.tsx';
+import { Todo } from '../components/Todo';
 import { THEME } from '../theme';
 import { TodoContext } from '../context/todo/todoContext';
 import { ScreenContext } from '../context/screen/screenContext';
 
-export const MainScreen = () => {
+interface IProps {}
+
+export const MainScreen: React.FC<IProps> = () => {
   const { todos, addTodo, removeTodo } = useContext(TodoContext);
   const { changeScreen } = useContext(ScreenContext);
-  const [deviceWidth, setDeviceWidth] = useState(
+  const [deviceWidth, setDeviceWidth] = useState<number>(
     Dimensions.get('window').width - THEME.PADDING_HORIZONTAL * 2
   );
 

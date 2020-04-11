@@ -3,11 +3,16 @@ import { ScreenContext } from './screenContext';
 import { screenReducer } from './screenReducer';
 import { CHANGE_SCREEN } from '../types';
 
-export const ScreenState = ({ children }) => {
+interface IProps {
+  children: React.ReactNode;
+}
+
+export const ScreenState: React.FC<IProps> = ({ children }) => {
   // null - it's default screen
   const [state, dispatch] = useReducer(screenReducer, null);
 
-  const changeScreen = (id) => dispatch({ type: CHANGE_SCREEN, payload: id });
+  const changeScreen = (id: number | null) =>
+    dispatch({ type: CHANGE_SCREEN, payload: id });
 
   return (
     <ScreenContext.Provider

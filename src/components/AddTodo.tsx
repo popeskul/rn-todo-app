@@ -3,8 +3,12 @@ import { View, StyleSheet, TextInput, Alert, Keyboard } from 'react-native';
 import { THEME } from '../theme';
 import { AppButton } from './UI/AppButton';
 
-export const AddTodo = ({ onSubmit }) => {
-  const [value, setValue] = useState('');
+interface IProps {
+  onSubmit: (value: string) => void;
+}
+
+export const AddTodo: React.FC<IProps> = ({ onSubmit }) => {
+  const [value, setValue] = useState<string>('');
 
   const pressHandler = () => {
     if (value.trim()) {
@@ -27,7 +31,7 @@ export const AddTodo = ({ onSubmit }) => {
         autoCapitalize='none'
       />
 
-      <AppButton onPress={pressHandler} style={styles.button}>
+      <AppButton style={styles.button} onPress={pressHandler}>
         Add
       </AppButton>
     </View>
@@ -49,6 +53,6 @@ const styles = StyleSheet.create({
     borderBottomColor: THEME.MAIN_COLOR,
   },
   button: {
-    backgroundColor: 'red',
+    backgroundColor: '#ff0000',
   },
 });
