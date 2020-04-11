@@ -3,7 +3,15 @@ import { Alert } from 'react-native';
 import { TodoContext } from './todoContext';
 import { todoReducer } from './todoReducer';
 import { initialState } from './initialState';
-import { ADD_TODO, REMOVE_TODO, UPDATE_TODO } from '../types';
+import {
+  ADD_TODO,
+  REMOVE_TODO,
+  UPDATE_TODO,
+  SHOW_LOADER,
+  HIDE_LOADER,
+  SHOW_ERROR,
+  ITodoState,
+} from '../types';
 import { ScreenContext } from '../screen/screenContext';
 
 interface Props {
@@ -43,10 +51,19 @@ export const TodoState: React.FC<Props> = ({ children }) => {
   const updateTodo = (id: number, title: string) =>
     dispatch({ type: UPDATE_TODO, id: id, title: title });
 
+  const showLoader = () => dispatch({ type: SHOW_LOADER });
+
+  const hideLoader = () => dispatch({ type: HIDE_LOADER });
+
+  const showError = (error: object | null) =>
+    dispatch({ type: SHOW_ERROR, error: error });
+
   return (
     <TodoContext.Provider
       value={{
         todos: state.todos,
+        loading: state.loading,
+        error: state.error,
         addTodo,
         removeTodo,
         updateTodo,

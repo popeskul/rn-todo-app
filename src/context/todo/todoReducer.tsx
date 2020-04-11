@@ -4,6 +4,11 @@ import {
   UPDATE_TODO,
   ITodoState,
   ITodoAction,
+  SHOW_LOADER,
+  HIDE_LOADER,
+  SHOW_ERROR,
+  CLEAR_ERROR,
+  FETCH_TODO,
 } from '../types';
 import { ITodo } from '../../interfaces';
 
@@ -22,7 +27,7 @@ const handlers = {
     ...state,
     todos: state.todos.filter((todo) => todo.id !== id),
   }),
-  [UPDATE_TODO]: (state: { todos: ITodo[] }, { id, title }: any) => ({
+  [UPDATE_TODO]: (state: ITodoState, { id, title }: any) => ({
     ...state,
     todos: state.todos.map((todo) => {
       if (todo.id === id) {
@@ -30,6 +35,23 @@ const handlers = {
       }
       return todo;
     }),
+  }),
+  [SHOW_LOADER]: (state: { loading: ITodoState }) => ({
+    ...state,
+    loading: true,
+  }),
+  [HIDE_LOADER]: (state: { loading: ITodoState }) => ({
+    ...state,
+    loading: false,
+  }),
+  [SHOW_ERROR]: (state: ITodoState, { error }: ITodoState) => ({
+    ...state,
+    error,
+  }),
+  [CLEAR_ERROR]: (state: { error: ITodoState }) => ({ ...state, error: null }),
+  [FETCH_TODO]: (state: ITodoState, todo: ITodoState) => ({
+    ...state,
+    todo,
   }),
   DEFAULT: (state: ITodoState) => state,
 };
