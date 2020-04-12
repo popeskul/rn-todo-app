@@ -8,6 +8,7 @@ import { THEME } from '../theme';
 import { AppButton } from '../components/UI/AppButton';
 import { TodoContext } from '../context/todo/todoContext';
 import { ScreenContext } from '../context/screen/screenContext';
+import { ITodo } from '../interfaces';
 
 interface IProps {}
 
@@ -16,10 +17,10 @@ export const TodoScreen: React.FC<IProps> = () => {
   const { todoId, changeScreen } = useContext(ScreenContext);
   const [modal, setModal] = useState<boolean>(false);
 
-  const todo = todos.find((todo) => todo.id === todoId);
+  const todo = todos.find((todo: ITodo) => todo.id === todoId);
 
-  const saveHandler = (title: string) => {
-    updateTodo(todo.id, title);
+  const saveHandler = async (title: string) => {
+    await updateTodo(todo.id, title);
     setModal(false);
   };
 

@@ -62,8 +62,21 @@ export const TodoState: React.FC<Props> = ({ children }) => {
     );
   };
 
-  const updateTodo = (id: number, title: string) =>
-    dispatch({ type: UPDATE_TODO, id: id, title: title });
+  const updateTodo = async (id: number, title: string) => {
+    clearError();
+
+    try {
+      await fetch(`https://rn-todo-app-bd3c7.firebaseio.com/todos/${id}.json`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ title }),
+      });
+
+      dispatch({ type: UPDATE_TODO, id, title });
+    } catch (error) {
+      showError(`Error ${error}`);
+    }
+  };
 
   const showLoader = () => dispatch({ type: SHOW_LOADER });
 
