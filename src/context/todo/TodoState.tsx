@@ -10,7 +10,6 @@ import {
   SHOW_LOADER,
   HIDE_LOADER,
   SHOW_ERROR,
-  ITodoState,
 } from '../types';
 import { ScreenContext } from '../screen/screenContext';
 
@@ -22,7 +21,19 @@ export const TodoState: React.FC<Props> = ({ children }) => {
   const [state, dispatch] = useReducer(todoReducer, initialState);
   const { changeScreen } = useContext(ScreenContext);
 
-  const addTodo = (title: string) => dispatch({ type: ADD_TODO, title });
+  const addTodo = async (title: string) => {
+    const response = await fetch(
+      'https://rn-todo-app-bd3c7.firebaseio.com/todos.json',
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ title }),
+      }
+    );
+    const data = await response.json();
+
+    dispatch({ type: ADD_TODO, title, id: data.name });
+  };
 
   const removeTodo = (id: number) => {
     const todo = state.todos.find((todo: { id: number }) => todo.id === id);

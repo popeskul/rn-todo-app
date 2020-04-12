@@ -13,15 +13,9 @@ import {
 import { ITodo } from '../../interfaces';
 
 const handlers = {
-  [ADD_TODO]: (state: ITodoState, { title }: ITodoAction) => ({
+  [ADD_TODO]: (state: ITodoState, { id, title }: ITodoAction) => ({
     ...state,
-    todos: [
-      ...state.todos,
-      {
-        id: Date.now().toString(),
-        title,
-      },
-    ],
+    todos: [...state.todos, { id, title }],
   }),
   [REMOVE_TODO]: (state: ITodoState, { id }: ITodoAction) => ({
     ...state,
