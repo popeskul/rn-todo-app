@@ -48,7 +48,7 @@ export const MainScreen: React.FC<IProps> = () => {
         renderItem={({ item }) => (
           <Todo todo={item} onRemove={removeTodo} openTodo={changeScreen} />
         )}
-        keyExtractor={(item) => item.id.toString()}
+        keyExtractor={(item) => String(item.id)}
       />
     </View>
   );

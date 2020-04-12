@@ -78,9 +78,7 @@ export const TodoState: React.FC<Props> = ({ children }) => {
     try {
       await Http.patch(
         `https://rn-todo-app-bd3c7.firebaseio.com/todos/${id}.json`,
-        {
-          body: JSON.stringify({ title }),
-        }
+        { title }
       );
 
       dispatch({ type: UPDATE_TODO, id, title });

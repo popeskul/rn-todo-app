@@ -18,7 +18,7 @@ export class Http {
 
   static async post(url: string, data = {}) {
     try {
-      return await request(url, 'POST');
+      return await request(url, 'POST', data);
     } catch (error) {
       console.log(error);
       throw error;
@@ -35,8 +35,9 @@ export class Http {
   }
 
   static async patch(url: string, data = {}) {
+    console.log(data, 'patch');
     try {
-      return await request(url, 'PATCH');
+      return await request(url, 'PATCH', data);
     } catch (error) {
       console.log(error);
       throw error;
@@ -44,7 +45,7 @@ export class Http {
   }
 }
 
-async function request(url: string, method = 'GET', data = {}) {
+async function request(url: string, method: string, data) {
   const config = {
     method,
     headers: Http.HEADERS,
