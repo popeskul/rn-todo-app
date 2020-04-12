@@ -6,6 +6,8 @@ import { THEME } from '../theme';
 import { TodoContext } from '../context/todo/todoContext';
 import { ScreenContext } from '../context/screen/screenContext';
 import { AppLoader } from '../components/UI/AppLoader';
+import { AppText } from '../components/UI/AppText';
+import { AppButton } from '../components/UI/AppButton';
 
 interface IProps {}
 
@@ -66,6 +68,15 @@ export const MainScreen: React.FC<IProps> = () => {
     return <AppLoader />;
   }
 
+  if (error) {
+    return (
+      <View style={styles.center}>
+        <AppText style={styles.error}>{error}</AppText>
+        <AppButton onPress={loadTodos}>Repeat</AppButton>
+      </View>
+    );
+  }
+
   return (
     <View>
       <AddTodo onSubmit={addTodo} />
@@ -86,5 +97,15 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     resizeMode: 'contain',
+  },
+  center: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  error: {
+    fontSize: 20,
+    color: THEME.DANGER_COLOR,
+    marginBottom: 20,
   },
 });

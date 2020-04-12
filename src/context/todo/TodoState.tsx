@@ -10,7 +10,9 @@ import {
   SHOW_LOADER,
   HIDE_LOADER,
   SHOW_ERROR,
-  FETCH_TODO,
+  FETCH_TODOS,
+  ITodoState,
+  CLEAR_ERROR,
 } from '../types';
 import { ScreenContext } from '../screen/screenContext';
 
@@ -67,24 +69,32 @@ export const TodoState: React.FC<Props> = ({ children }) => {
 
   const hideLoader = () => dispatch({ type: HIDE_LOADER });
 
-  const showError = (error: object | null) =>
+  const showError = (error: string) =>
     dispatch({ type: SHOW_ERROR, error: error });
+
+  const clearError = () => dispatch({ type: CLEAR_ERROR });
 
   const fetchTodo = async () => {
     showLoader();
+    clearError();
 
-    const response = await fetch(
-      'https://rn-todo-app-bd3c7.firebaseio.com/todos.json',
-      { headers: { 'Content-type': 'application/json' } }
-    );
+    try {
+      const response = await fetch(
+        'https://rn-todo-app-bd3c7.firebaseio.com/todos.json',
+        {
+          method: 'GET',
+          headers: { 'Content-type': 'application/json' },
+        }
+      );
+      const data = await response.json();
+      const todos = Object.keys(data).map((key) => ({ ...data[key], id: key }));
 
-    const data = await response.json();
-    const todos = Object.keys(data).map((key) => ({ ...data[key], id: key }));
-    setTimeout(() => {
-      dispatch({ type: FETCH_TODO, todos });
-    }, 5000);
-
-    hideLoader();
+      dispatch({ type: FETCH_TODOS, todos });
+    } catch (error) {
+      showError(`Some error - ${error}`);
+    } finally {
+      hideLoader();
+    }
   };
 
   return (

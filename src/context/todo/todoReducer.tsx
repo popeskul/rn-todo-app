@@ -8,7 +8,7 @@ import {
   HIDE_LOADER,
   SHOW_ERROR,
   CLEAR_ERROR,
-  FETCH_TODO,
+  FETCH_TODOS,
 } from '../types';
 import { ITodo } from '../../interfaces';
 
@@ -43,7 +43,7 @@ const handlers = {
     error,
   }),
   [CLEAR_ERROR]: (state: { error: ITodoState }) => ({ ...state, error: null }),
-  [FETCH_TODO]: (state: ITodoState, { todos }: ITodoState) => ({
+  [FETCH_TODOS]: (state: ITodoState, { todos }: ITodoState) => ({
     ...state,
     todos,
   }),

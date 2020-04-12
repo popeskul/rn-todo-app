@@ -7,7 +7,7 @@ interface IProps {
 }
 
 export const AppText: React.FC<IProps> = (props) => (
-  <Text style={{ ...styles.default, ...props.style }}>{props.children}</Text>
+  <Text style={{ ...styles.default, ...props.style }}>{props.children}1</Text>
 );
 
 const styles = StyleSheet.create({

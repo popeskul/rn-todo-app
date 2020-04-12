@@ -4,7 +4,7 @@ export const ADD_TODO = 'ADD_TODO';
 export const UPDATE_TODO = 'UPDATE_TODO';
 export const REMOVE_TODO = 'REMOVE_TODO';
 export const CHANGE_SCREEN = 'CHANGE_SCREEN';
-export const FETCH_TODO = 'FETCH_TODO';
+export const FETCH_TODOS = 'FETCH_TODOS';
 export const SHOW_LOADER = 'SHOW_LOADER';
 export const HIDE_LOADER = 'HIDE_LOADER';
 export const SHOW_ERROR = 'SHOW_ERROR';
@@ -17,13 +17,13 @@ type actionTodoTypes =
   | 'SHOW_LOADER'
   | 'HIDE_LOADER'
   | 'SHOW_ERROR'
-  | 'FETCH_TODO'
+  | 'FETCH_TODOS'
   | 'CLEAR_ERROR';
 
 export interface ITodoState {
   todos: ITodo[];
   loading: boolean;
-  error: object | null;
+  error: string | null;
 }
 
 export interface ITodoAction {
@@ -31,7 +31,7 @@ export interface ITodoAction {
   payload?: any;
   id?: number | string;
   title?: string;
-  error?: object | null;
+  error?: string | null;
   todos?: object;
 }
 
