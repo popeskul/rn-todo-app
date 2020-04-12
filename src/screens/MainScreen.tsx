@@ -5,6 +5,7 @@ import { Todo } from '../components/Todo';
 import { THEME } from '../theme';
 import { TodoContext } from '../context/todo/todoContext';
 import { ScreenContext } from '../context/screen/screenContext';
+import { AppLoader } from '../components/UI/AppLoader';
 
 interface IProps {}
 
@@ -59,6 +60,10 @@ export const MainScreen: React.FC<IProps> = () => {
         />
       </View>
     );
+  }
+
+  if (loading) {
+    return <AppLoader />;
   }
 
   return (

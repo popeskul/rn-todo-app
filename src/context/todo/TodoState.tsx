@@ -71,6 +71,8 @@ export const TodoState: React.FC<Props> = ({ children }) => {
     dispatch({ type: SHOW_ERROR, error: error });
 
   const fetchTodo = async () => {
+    showLoader();
+
     const response = await fetch(
       'https://rn-todo-app-bd3c7.firebaseio.com/todos.json',
       { headers: { 'Content-type': 'application/json' } }
@@ -78,7 +80,11 @@ export const TodoState: React.FC<Props> = ({ children }) => {
 
     const data = await response.json();
     const todos = Object.keys(data).map((key) => ({ ...data[key], id: key }));
-    dispatch({ type: FETCH_TODO, todos });
+    setTimeout(() => {
+      dispatch({ type: FETCH_TODO, todos });
+    }, 5000);
+
+    hideLoader();
   };
 
   return (

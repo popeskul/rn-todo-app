@@ -30,11 +30,11 @@ const handlers = {
       return todo;
     }),
   }),
-  [SHOW_LOADER]: (state: { loading: ITodoState }) => ({
+  [SHOW_LOADER]: (state: ITodoState) => ({
     ...state,
     loading: true,
   }),
-  [HIDE_LOADER]: (state: { loading: ITodoState }) => ({
+  [HIDE_LOADER]: (state: ITodoState) => ({
     ...state,
     loading: false,
   }),
