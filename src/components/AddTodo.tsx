@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, StyleSheet, TextInput, Alert, Keyboard } from 'react-native';
 import { THEME } from '../theme';
 import { AppButton } from './UI/AppButton';
+import { FontAwesome } from '@expo/vector-icons';
 
 interface IProps {
   onSubmit: (value: string) => void;
@@ -33,6 +34,7 @@ export const AddTodo: React.FC<IProps> = ({ onSubmit }) => {
 
       <AppButton style={styles.button} onPress={pressHandler}>
         Add
+        <FontAwesome name='plus-circle' size={20} />
       </AppButton>
     </View>
   );
@@ -54,5 +56,6 @@ const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: '#ff0000',
+    alignItems: 'center',
   },
 });

@@ -10,7 +10,6 @@ import {
   CLEAR_ERROR,
   FETCH_TODOS,
 } from '../types';
-import { ITodo } from '../../interfaces';
 
 const handlers = {
   [ADD_TODO]: (state: ITodoState, { id, title }: ITodoAction) => ({
