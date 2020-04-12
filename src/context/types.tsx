@@ -17,6 +17,7 @@ type actionTodoTypes =
   | 'SHOW_LOADER'
   | 'HIDE_LOADER'
   | 'SHOW_ERROR'
+  | 'FETCH_TODO'
   | 'CLEAR_ERROR';
 
 export interface ITodoState {
@@ -31,6 +32,7 @@ export interface ITodoAction {
   id?: number | string;
   title?: string;
   error?: object | null;
+  todos?: object;
 }
 
 export interface IScreenState {

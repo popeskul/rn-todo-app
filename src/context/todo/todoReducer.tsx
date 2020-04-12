@@ -43,9 +43,9 @@ const handlers = {
     error,
   }),
   [CLEAR_ERROR]: (state: { error: ITodoState }) => ({ ...state, error: null }),
-  [FETCH_TODO]: (state: ITodoState, todo: ITodoState) => ({
+  [FETCH_TODO]: (state: ITodoState, { todos }: ITodoState) => ({
     ...state,
-    todo,
+    todos,
   }),
   DEFAULT: (state: ITodoState) => state,
 };

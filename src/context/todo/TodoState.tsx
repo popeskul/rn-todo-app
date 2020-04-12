@@ -10,6 +10,7 @@ import {
   SHOW_LOADER,
   HIDE_LOADER,
   SHOW_ERROR,
+  FETCH_TODO,
 } from '../types';
 import { ScreenContext } from '../screen/screenContext';
 
@@ -69,6 +70,17 @@ export const TodoState: React.FC<Props> = ({ children }) => {
   const showError = (error: object | null) =>
     dispatch({ type: SHOW_ERROR, error: error });
 
+  const fetchTodo = async () => {
+    const response = await fetch(
+      'https://rn-todo-app-bd3c7.firebaseio.com/todos.json',
+      { headers: { 'Content-type': 'application/json' } }
+    );
+
+    const data = await response.json();
+    const todos = Object.keys(data).map((key) => ({ ...data[key], id: key }));
+    dispatch({ type: FETCH_TODO, todos });
+  };
+
   return (
     <TodoContext.Provider
       value={{
@@ -78,6 +90,7 @@ export const TodoState: React.FC<Props> = ({ children }) => {
         addTodo,
         removeTodo,
         updateTodo,
+        fetchTodo,
       }}
     >
       {children}

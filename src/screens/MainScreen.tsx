@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, useCallback } from 'react';
 import { StyleSheet, View, FlatList, Image, Dimensions } from 'react-native';
 import { AddTodo } from '../components/AddTodo';
 import { Todo } from '../components/Todo';
@@ -9,11 +9,19 @@ import { ScreenContext } from '../context/screen/screenContext';
 interface IProps {}
 
 export const MainScreen: React.FC<IProps> = () => {
-  const { todos, addTodo, removeTodo } = useContext(TodoContext);
+  const { todos, addTodo, removeTodo, fetchTodo, loading, error } = useContext(
+    TodoContext
+  );
   const { changeScreen } = useContext(ScreenContext);
   const [deviceWidth, setDeviceWidth] = useState<number>(
     Dimensions.get('window').width - THEME.PADDING_HORIZONTAL * 2
   );
+
+  const loadTodos = useCallback(async () => await fetchTodo(), [fetchTodo]);
+
+  useEffect(() => {
+    loadTodos();
+  }, []);
 
   useEffect(() => {
     const update = () => {

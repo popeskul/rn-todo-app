@@ -5,8 +5,8 @@ import { ITodo } from '../interfaces';
 
 interface Props {
   todo: ITodo;
-  onRemove: (id: number) => number;
-  openTodo: (id: number) => number;
+  onRemove: (id: number) => void;
+  openTodo: (id: number) => void;
 }
 
 export const Todo: React.FC<Props> = ({ todo, onRemove, openTodo }) => {

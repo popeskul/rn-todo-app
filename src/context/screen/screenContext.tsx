@@ -5,4 +5,5 @@ export interface IScreenContext {
   todoId: number | null;
 }
 
+// <Partial> allows to create the context without default values
 export const ScreenContext = createContext<IScreenContext>(null);

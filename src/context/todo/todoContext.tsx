@@ -8,6 +8,8 @@ interface ContextProps {
   addTodo: (title: string) => void;
   removeTodo: (id: number) => void;
   updateTodo: (id: number, title: string) => void;
+  fetchTodo: () => void;
 }
 
-export const TodoContext = createContext<Partial<ContextProps | null>>(null);
+// <Partial> allows to create the context without default values
+export const TodoContext = createContext<Partial<ContextProps>>(null);
