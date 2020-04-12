@@ -1,9 +1,3 @@
-// interface IHttp {
-//   url: string;
-//   data?: object;
-//   method?: 'GET' | 'POST' | 'PATCH' | 'DELETE';
-// }
-
 export class Http {
   static HEADERS = { 'Content-Type': 'application/json' };
 
@@ -44,7 +38,7 @@ export class Http {
   }
 }
 
-async function request(url: string, method: string, data) {
+async function request(url: string, method: string, data = {}) {
   const config = {
     method,
     headers: Http.HEADERS,
