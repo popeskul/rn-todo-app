@@ -35,7 +35,6 @@ export class Http {
   }
 
   static async patch(url: string, data = {}) {
-    console.log(data, 'patch');
     try {
       return await request(url, 'PATCH', data);
     } catch (error) {
